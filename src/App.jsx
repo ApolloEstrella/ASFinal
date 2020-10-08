@@ -11,7 +11,9 @@ import { Menu, MenuItem, useMediaQuery } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import Login  from "../src/components/authentications/login";
 import Register from "../src/components/authentications/register";
+import ForgotPassword from "./components/authentications/forgot-password";
 import { Route, Switch } from "react-router-dom";
+
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -132,6 +134,7 @@ const useStyles = makeStyles(theme =>
         <Switch>
           <Route exact from="/login" render={(props) => <Login {...props} />} />           
           <Route exact path="/register" render={(props) => <Register {...props} />} />
+          <Route exact path="/forgot-password" render={(props) => <ForgotPassword {...props} />} />
         </Switch>
       </div>
     );

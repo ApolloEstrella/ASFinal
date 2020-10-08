@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface ISignUpForm {
   user: {
-    password: string;
     email: string;
   };
 }
@@ -66,7 +65,7 @@ const formStatusProps: IFormStatusProps = {
   },
 };
 
-const Login: React.FunctionComponent = () => {
+const ForgotPassword: React.FunctionComponent = () => {
   const classes = useStyles();
   const [displayFormStatus, setDisplayFormStatus] = useState(false);
   const [formStatus, setFormStatus] = useState<IFormStatus>({
@@ -103,7 +102,6 @@ const Login: React.FunctionComponent = () => {
       <Formik
         initialValues={{
           user: {
-            password: "",
             email: "",
           },
         }}
@@ -116,13 +114,6 @@ const Login: React.FunctionComponent = () => {
         validationSchema={Yup.object().shape({
           user: Yup.object().shape({
             email: Yup.string().email().required("Email is required!"),
-            password: Yup.string()
-              .matches(
-                /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()]).{8,20}\S$/
-              )
-              .required(
-                "Please valid password. One uppercase, one lowercase, one special character and no spaces"
-              ),
           }),
         })}
       >
@@ -137,7 +128,7 @@ const Login: React.FunctionComponent = () => {
           } = props;
           return (
             <Form>
-              <h1 className={classes.title}>Login</h1>
+              <h1 className={classes.title}>Forgot Password</h1>
               <Grid container justify="space-around" direction="row">
                 <Grid
                   item
@@ -164,56 +155,6 @@ const Login: React.FunctionComponent = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                </Grid>
-                <Grid
-                  item
-                  lg={10}
-                  md={10}
-                  sm={10}
-                  xs={10}
-                  className={classes.textField}
-                >
-                  <TextField
-                    name="user.password"
-                    id="user.password"
-                    label="Password"
-                    value={values.user.password}
-                    type="password"
-                    helperText={
-                      errors.user?.password && touched.user?.password
-                        ? "Please valid password. One uppercase, one lowercase, one special character and no spaces"
-                        : "One uppercase, one lowercase, one special character and no spaces"
-                    }
-                    error={
-                      errors.user?.password && touched.user?.password
-                        ? true
-                        : false
-                    }
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </Grid>
-                <Grid
-                  item
-                  lg={10}
-                  md={10}
-                  sm={10}
-                  xs={10}
-                  className={classes.textField}
-                >
-                  <br></br>
-                  <Link to="/forgot-password">Forgot Password?</Link>
-                </Grid>
-                <Grid
-                  item
-                  lg={10}
-                  md={10}
-                  sm={10}
-                  xs={10}
-                  className={classes.textField}
-                >
-                  <br></br>
-                  <Link to="/register">Register</Link>
                 </Grid>
                 <Grid
                   item
@@ -264,4 +205,4 @@ const Login: React.FunctionComponent = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
